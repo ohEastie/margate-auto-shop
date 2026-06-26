@@ -1,6 +1,5 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Icon from "../components/Icon.astro";
 
 const phoneHref = "tel:+19545550197";
 const appointmentHref = "#contact";
@@ -32,26 +31,18 @@ const trustCards = [
 	{
 		title: "Honest Service",
 		text: "Clear communication and straightforward estimates before repair work begins.",
-		icon: "estimate",
-		image: images.hero,
 	},
 	{
 		title: "Experienced Technicians",
 		text: "Capable repair support for routine maintenance, diagnostics, and larger repairs.",
-		icon: "cert",
-		image: images.generalRepair,
 	},
 	{
 		title: "Convenient Location",
 		text: "Easy to find on North State Road 7 in the heart of Margate.",
-		icon: "pin",
-		image: images.about,
 	},
 	{
 		title: "Dependable Repairs",
 		text: "Service focused on getting everyday drivers safely back on the road.",
-		icon: "shield",
-		image: images.tire,
 	},
 ];
 
@@ -59,43 +50,36 @@ const services = [
 	{
 		title: "Oil Changes",
 		text: "Routine oil and filter service to help keep your vehicle running smoothly.",
-		icon: "oil",
 		image: images.maintenance,
 	},
 	{
 		title: "Brake Service",
 		text: "Brake pads, rotors, inspections, and repairs focused on everyday safety.",
-		icon: "brake",
 		image: images.brake,
 	},
 	{
 		title: "Electrical Diagnostics",
 		text: "Troubleshooting for batteries, starters, alternators, wiring, and warning lights.",
-		icon: "bolt",
 		image: images.electrical,
 	},
 	{
 		title: "Engine Repair",
 		text: "Diagnostics and repair for noises, leaks, performance issues, and warning signs.",
-		icon: "engine",
 		image: images.engine,
 	},
 	{
 		title: "Transmission Service",
 		text: "Careful inspection and service for shifting concerns and drivability issues.",
-		icon: "gear",
 		image: images.transmission,
 	},
 	{
 		title: "A/C Repair",
 		text: "Testing and repair to keep your vehicle comfortable in South Florida heat.",
-		icon: "snow",
 		image: images.ac,
 	},
 	{
 		title: "Towing & Roadside Assistance",
 		text: "Helpful support when your vehicle cannot make it to the shop on its own.",
-		icon: "towing",
 		image: images.towing,
 	},
 ];
@@ -126,17 +110,14 @@ const values = [
 	{
 		title: "Transparent",
 		text: "Customers should understand what is being repaired and why it matters.",
-		icon: "quote",
 	},
 	{
 		title: "Respectful",
 		text: "The experience should feel friendly, practical, and low pressure.",
-		icon: "people",
 	},
 	{
 		title: "Reliable",
 		text: "Repairs and maintenance are handled with everyday safety in mind.",
-		icon: "check",
 	},
 ];
 ---
@@ -156,7 +137,6 @@ const values = [
 		</nav>
 
 		<a class="nav-call" href={phoneHref} aria-label="Call Margate Auto Repair">
-			<svg aria-hidden="true"><use href="#icon-phone" /></svg>
 			<span>Call Now</span>
 		</a>
 	</header>
@@ -175,12 +155,10 @@ const values = [
 					</p>
 					<div class="hero-actions">
 						<a class="btn btn-primary" href={phoneHref}>
-							<svg aria-hidden="true"><use href="#icon-phone" /></svg>
 							<span>Call Now</span>
 						</a>
 						<a class="btn btn-secondary" href={appointmentHref}>
 							<span>Schedule Service</span>
-							<svg aria-hidden="true"><use href="#icon-arrow" /></svg>
 						</a>
 					</div>
 				</div>
@@ -204,12 +182,9 @@ const values = [
 				{
 					trustCards.map((card) => (
 						<article class="trust-card reveal">
-							<img src={card.image} alt="" loading="lazy" />
-							<div class="trust-card-body">
-								<Icon name={card.icon} />
-								<h3>{card.title}</h3>
-								<p>{card.text}</p>
-							</div>
+							<span class="card-accent" aria-hidden="true"></span>
+							<h3>{card.title}</h3>
+							<p>{card.text}</p>
 						</article>
 					))
 				}
@@ -231,7 +206,6 @@ const values = [
 						<article class="service-card reveal">
 							<img src={service.image} alt={`${service.title} at Margate Auto Repair`} loading="lazy" />
 							<div class="service-card-body">
-								<Icon name={service.icon} />
 								<h3>{service.title}</h3>
 								<p>{service.text}</p>
 								<a href="#contact">Request service</a>
@@ -263,11 +237,9 @@ const values = [
 						{
 							values.map((value) => (
 								<article class="value-card">
-									<Icon name={value.icon} />
-									<div>
-										<h3>{value.title}</h3>
-										<p>{value.text}</p>
-									</div>
+									<span class="value-mark" aria-hidden="true"></span>
+									<h3>{value.title}</h3>
+									<p>{value.text}</p>
 								</article>
 							))
 						}
@@ -287,11 +259,9 @@ const values = [
 					</p>
 					<div class="why-points">
 						<div>
-							<Icon name="wrench" />
 							<span>General repair and diagnostics</span>
 						</div>
 						<div>
-							<Icon name="check" />
 							<span>Tire and maintenance support</span>
 						</div>
 					</div>
@@ -327,9 +297,6 @@ const values = [
 					))
 				}
 			</ol>
-			<div class="process-photo reveal">
-				<img src={images.maintenance} alt="Maintenance service at Margate Auto Repair" loading="lazy" />
-			</div>
 		</section>
 
 		<section class="reviews section-pad" id="reviews">
@@ -353,9 +320,6 @@ const values = [
 						))
 					}
 				</div>
-				<div class="reviews-photo reveal">
-					<img src={images.hero} alt="Busy outside lot at Margate Auto Repair" loading="lazy" />
-				</div>
 			</div>
 		</section>
 
@@ -370,12 +334,10 @@ const values = [
 					</p>
 					<div class="contact-actions">
 						<a class="btn btn-primary" href={phoneHref}>
-							<svg aria-hidden="true"><use href="#icon-phone" /></svg>
 							<span>Call Now</span>
 						</a>
 						<a class="btn btn-dark" href="mailto:appointments@margateautorepair.example">
 							<span>Schedule Service</span>
-							<svg aria-hidden="true"><use href="#icon-arrow" /></svg>
 						</a>
 					</div>
 				</div>
@@ -400,9 +362,6 @@ const values = [
 						loading="lazy"
 						referrerpolicy="no-referrer-when-downgrade"></iframe>
 				</div>
-				<div class="contact-photo reveal">
-					<img src={images.about} alt="Margate Auto Repair storefront lot" loading="lazy" />
-				</div>
 			</div>
 		</section>
 	</main>
@@ -411,11 +370,6 @@ const values = [
 		<img src={images.logo} alt="Margate Auto Repair logo" />
 		<span>Neighborhood auto repair in Margate, FL.</span>
 	</footer>
-
-	<svg class="icon-sprite" aria-hidden="true">
-		<symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></symbol>
-		<symbol id="icon-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z" /></symbol>
-	</svg>
 </Layout>
 
 <style>
@@ -552,17 +506,6 @@ const values = [
 	.nav-call:hover,
 	.btn:hover {
 		transform: translateY(-2px);
-	}
-
-	.nav-call svg,
-	.btn svg {
-		fill: none;
-		height: 19px;
-		stroke: currentColor;
-		stroke-linecap: round;
-		stroke-linejoin: round;
-		stroke-width: 2.3;
-		width: 19px;
 	}
 
 	.btn-primary {
@@ -792,44 +735,19 @@ const values = [
 	}
 
 	.trust-card {
+		min-height: 220px;
 		overflow: hidden;
+		padding: 1.35rem;
+		position: relative;
 	}
 
-	.trust-card img,
-	.service-card img,
-	.reviews-photo img,
-	.contact-photo img {
+	.card-accent {
+		background: #ef9d1f;
+		border-radius: 999px;
 		display: block;
-		height: 170px;
-		object-fit: cover;
-		width: 100%;
-	}
-
-	.trust-card-body {
-		padding: 1.2rem;
-	}
-
-	.icon {
-		align-items: center;
-		background: #eaf5ff;
-		border: 1px solid rgba(22, 119, 199, 0.16);
-		border-radius: 8px;
-		color: #1677c7;
-		display: inline-flex;
-		height: 48px;
-		justify-content: center;
-		margin-bottom: 1rem;
-		width: 48px;
-	}
-
-	.icon svg {
-		fill: none;
-		height: 25px;
-		stroke: currentColor;
-		stroke-linecap: round;
-		stroke-linejoin: round;
-		stroke-width: 1.85;
-		width: 25px;
+		height: 4px;
+		margin-bottom: 1.2rem;
+		width: 58px;
 	}
 
 	.services {
@@ -851,8 +769,11 @@ const values = [
 	}
 
 	.service-card img {
+		display: block;
 		height: 210px;
+		object-fit: cover;
 		transition: transform 260ms ease;
+		width: 100%;
 	}
 
 	.service-card:hover img {
@@ -936,13 +857,6 @@ const values = [
 		padding: 0.85rem;
 	}
 
-	.why-points .icon {
-		flex: 0 0 auto;
-		height: 42px;
-		margin: 0;
-		width: 42px;
-	}
-
 	.why-points span {
 		color: #0b1f35;
 		font-weight: 900;
@@ -974,16 +888,15 @@ const values = [
 	}
 
 	.value-card {
-		align-items: flex-start;
-		display: flex;
-		gap: 1rem;
 		padding: 1rem;
 	}
 
-	.value-card .icon {
-		flex: 0 0 auto;
-		height: 42px;
-		margin: 0;
+	.value-mark {
+		background: #1677c7;
+		border-radius: 999px;
+		display: block;
+		height: 4px;
+		margin-bottom: 0.9rem;
 		width: 42px;
 	}
 
@@ -1029,22 +942,6 @@ const values = [
 		justify-content: center;
 		margin-bottom: 1rem;
 		width: 42px;
-	}
-
-	.process-photo {
-		border-radius: 8px;
-		box-shadow: 0 24px 58px rgba(3, 12, 24, 0.22);
-		margin: 1rem auto 0;
-		max-width: 1180px;
-		overflow: hidden;
-		position: relative;
-	}
-
-	.process-photo img {
-		display: block;
-		height: 320px;
-		object-fit: cover;
-		width: 100%;
 	}
 
 	.reviews {
@@ -1121,29 +1018,6 @@ const values = [
 		width: 100%;
 	}
 
-	.reviews-photo,
-	.contact-photo {
-		border-radius: 8px;
-		box-shadow: 0 24px 58px rgba(13, 32, 52, 0.13);
-		overflow: hidden;
-	}
-
-	.reviews-photo {
-		grid-column: 1 / -1;
-	}
-
-	.reviews-photo img {
-		height: 340px;
-	}
-
-	.contact-photo {
-		grid-column: 1 / -1;
-	}
-
-	.contact-photo img {
-		height: 360px;
-	}
-
 	.site-footer {
 		align-items: center;
 		background: #071827;
@@ -1166,10 +1040,6 @@ const values = [
 		object-fit: contain;
 		padding: 0.35rem;
 		width: 72px;
-	}
-
-	.icon-sprite {
-		display: none;
 	}
 
 	.reveal {
@@ -1236,10 +1106,6 @@ const values = [
 			padding: 0 0.72rem;
 		}
 
-		.nav-call svg {
-			display: none;
-		}
-
 		.hero {
 			min-height: calc(100vh - 68px);
 			padding-top: 4.25rem;
@@ -1269,9 +1135,7 @@ const values = [
 		}
 
 		.why-photos img,
-		.why-photos img:nth-child(2),
-		.reviews-photo img,
-		.contact-photo img {
+		.why-photos img:nth-child(2) {
 			height: 260px;
 		}
 
@@ -1280,13 +1144,6 @@ const values = [
 			min-height: auto;
 		}
 
-		.value-card {
-			display: block;
-		}
-
-		.value-card .icon {
-			margin-bottom: 0.9rem;
-		}
 	}
 </style>
 
