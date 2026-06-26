@@ -1,11 +1,1165 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import Icon from "../components/Icon.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const phoneDisplay = "Call Now";
+const phoneHref = "tel:+19545550197";
+
+const navItems = [
+	{ label: "Home", href: "#home" },
+	{ label: "Services", href: "#services" },
+	{ label: "About", href: "#about" },
+	{ label: "Reviews", href: "#reviews" },
+	{ label: "Contact", href: "#contact" },
+];
+
+const trustCards = [
+	{
+		title: "Transparent Pricing",
+		text: "Receive honest estimates before any work begins.",
+		icon: "estimate",
+	},
+	{
+		title: "Customer-First Service",
+		text: "Friendly professionals who put customers first.",
+		icon: "people",
+	},
+	{
+		title: "Reliable Repairs",
+		text: "Experienced technicians committed to getting you safely back on the road.",
+		icon: "shield",
+	},
+];
+
+const services = [
+	["Engine Repair", "Skilled diagnostics and repairs for dependable engine performance.", "engine"],
+	["Transmission Repair", "Careful service for shifting issues, leaks, and drivability concerns.", "gear"],
+	["Brake Repair", "Pads, rotors, hydraulics, and inspections for confident stopping.", "brake"],
+	["Auto A/C Repair", "Comfort-focused testing and repair for Florida driving conditions.", "snow"],
+	["Electrical Diagnostics", "Pinpoint testing for wiring, charging, and starting problems.", "bolt"],
+	["Computer Diagnostics", "Modern scan tools to identify warning lights and system faults.", "scan"],
+	["Suspension & Steering", "Smooth, stable handling with expert steering and ride repairs.", "suspension"],
+	["Cooling System Repair", "Radiators, hoses, thermostats, and water pumps serviced correctly.", "drop"],
+	["Oil Changes", "Fast oil and filter service using the right products for your vehicle.", "oil"],
+	["General Maintenance", "Routine care that helps prevent surprise breakdowns and costly repairs.", "wrench"],
+	["Exhaust & Muffler Repair", "Quiet, efficient exhaust service for leaks, noise, and emissions concerns.", "exhaust"],
+	["Pre-Purchase Inspections", "Clear inspection reports before you commit to buying a used vehicle.", "clipboard"],
+];
+
+const reasons = [
+	["Experienced Technicians", "cert"],
+	["Transparent Quotes", "quote"],
+	["Fast Turnaround", "clock"],
+	["Customer Satisfaction", "heart"],
+	["Reliable Repairs", "check"],
+	["Professional Service", "pro"],
+];
+
+const process = [
+	"Schedule Appointment",
+	"Vehicle Inspection",
+	"Transparent Estimate",
+	"Professional Repair",
+	"Drive Away With Confidence",
+];
+
+const reviews = [
+	{
+		name: "Melissa R.",
+		text: "They explained the issue clearly, gave me a fair estimate, and finished the repair faster than expected.",
+	},
+	{
+		name: "Carlos M.",
+		text: "Honest staff, clean shop, and no pressure. It feels good to have a local repair team I can trust.",
+	},
+	{
+		name: "Janet P.",
+		text: "Professional from start to finish. The pricing was fair and my car was ready when they promised.",
+	},
+	{
+		name: "Andre S.",
+		text: "Quick diagnosis, friendly service, and the brake repair made a huge difference. I will be back.",
+	},
+];
+
+const valueCards = [
+	{
+		title: "Transparency",
+		text: "Customers receive honest estimates and understand exactly what work is being performed.",
+		icon: "estimate",
+	},
+	{
+		title: "Customer-Driven Service",
+		text: "Every repair experience should be smooth, respectful, and stress-free.",
+		icon: "people",
+	},
+	{
+		title: "Reliability",
+		text: "Drivers can depend on the shop for routine maintenance and complex repairs.",
+		icon: "shield",
+	},
+];
 ---
 
 <Layout>
-	<Welcome />
+	<header class="site-header" data-header>
+		<a class="brand" href="#home" aria-label="Margate Auto Repair home">
+			<span class="brand-mark">M</span>
+			<span>
+				<strong>Margate Auto Repair</strong>
+				<small>Trusted Local Service</small>
+			</span>
+		</a>
+
+		<nav class="main-nav" aria-label="Primary navigation">
+			{navItems.map((item) => <a href={item.href}>{item.label}</a>)}
+		</nav>
+
+		<a class="nav-call" href={phoneHref} aria-label="Call Margate Auto Repair">{phoneDisplay}</a>
+	</header>
+
+	<main id="home">
+		<section class="hero section-pad">
+			<div class="hero-media" aria-hidden="true"></div>
+			<div class="hero-shade" aria-hidden="true"></div>
+			<div class="hero-inner">
+				<div class="hero-copy reveal">
+					<p class="eyebrow">Margate, FL auto repair</p>
+					<h1>Honest Auto Repair You Can Trust</h1>
+					<p class="hero-text">
+						Serving the Margate community with transparent pricing, reliable repairs, and
+						friendly customer service.
+					</p>
+					<div class="hero-actions">
+						<a class="btn btn-primary" href="#contact">
+							<span>Schedule Appointment</span>
+							<svg aria-hidden="true"><use href="#icon-arrow" /></svg>
+						</a>
+						<a class="btn btn-secondary" href={phoneHref}>
+							<svg aria-hidden="true"><use href="#icon-phone" /></svg>
+							<span>Call Now</span>
+						</a>
+					</div>
+				</div>
+				<div class="hero-panel reveal">
+					<strong>Open 7 days</strong>
+					<span>Fair estimates, friendly service, and repairs done right.</span>
+				</div>
+			</div>
+		</section>
+
+		<section class="trust section-pad" aria-label="Trust highlights">
+			<div class="section-heading reveal">
+				<p class="eyebrow">Built on trust</p>
+				<h2>Clear answers before the work starts.</h2>
+			</div>
+			<div class="card-grid three">
+				{
+					trustCards.map((card) => (
+						<article class="feature-card reveal">
+							<Icon name={card.icon} />
+							<h3>{card.title}</h3>
+							<p>{card.text}</p>
+						</article>
+					))
+				}
+			</div>
+		</section>
+
+		<section class="services section-pad" id="services">
+			<div class="section-heading centered reveal">
+				<p class="eyebrow">Services</p>
+				<h2>Complete care for everyday drivers.</h2>
+			</div>
+			<div class="service-grid">
+				{
+					services.map(([title, text, icon]) => (
+						<article class="service-card reveal">
+							<Icon name={icon} />
+							<h3>{title}</h3>
+							<p>{text}</p>
+							<a href="#contact">Learn More</a>
+						</article>
+					))
+				}
+			</div>
+		</section>
+
+		<section class="why section-pad">
+			<div class="split">
+				<div class="split-media reveal">
+					<img
+						src="https://images.unsplash.com/photo-1632823471565-1ecdf5c30f17?auto=format&fit=crop&w=1200&q=82"
+						alt="Professional mechanic inspecting a vehicle in a clean repair bay"
+						loading="lazy"
+					/>
+				</div>
+				<div class="split-copy reveal">
+					<p class="eyebrow">Why choose us</p>
+					<h2>Professional service without the dealership pressure.</h2>
+					<div class="reason-grid">
+						{
+							reasons.map(([label, icon]) => (
+								<div class="reason-item">
+									<Icon name={icon} />
+									<span>{label}</span>
+								</div>
+							))
+						}
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="process section-pad">
+			<div class="section-heading centered reveal">
+				<p class="eyebrow">Our process</p>
+				<h2>A smoother repair experience from start to finish.</h2>
+			</div>
+			<ol class="process-list">
+				{
+					process.map((step, index) => (
+						<li class="process-step reveal">
+							<span>Step {index + 1}</span>
+							<strong>{step}</strong>
+						</li>
+					))
+				}
+			</ol>
+		</section>
+
+		<section class="reviews section-pad" id="reviews">
+			<div class="reviews-layout">
+				<div class="section-heading reveal">
+					<p class="eyebrow">Customer reviews</p>
+					<h2>Local drivers value honest answers and fair pricing.</h2>
+				</div>
+
+				<div class="carousel reveal" data-carousel>
+					<div class="review-track" data-track>
+						{
+							reviews.map((review) => (
+								<article class="review-card">
+									<div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+									<p>"{review.text}"</p>
+									<strong>{review.name}</strong>
+								</article>
+							))
+						}
+					</div>
+					<div class="carousel-controls">
+						<button type="button" data-prev aria-label="Previous review">
+							<svg aria-hidden="true"><use href="#icon-left" /></svg>
+						</button>
+						<div class="dots" data-dots aria-label="Review slide indicators"></div>
+						<button type="button" data-next aria-label="Next review">
+							<svg aria-hidden="true"><use href="#icon-right" /></svg>
+						</button>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="about section-pad" id="about">
+			<div class="about-grid">
+				<div class="about-copy reveal">
+					<p class="eyebrow">About Margate Auto Repair</p>
+					<h2>Friendly local repair, fair prices, and workmanship you can count on.</h2>
+					<p>
+						Margate Auto Repair is committed to providing exceptional automotive repair at
+						fair prices while delivering friendly, professional customer service.
+					</p>
+				</div>
+				<div class="about-image reveal">
+					<img
+						src="https://images.unsplash.com/photo-1625047509168-a7026f36de04?auto=format&fit=crop&w=1100&q=82"
+						alt="Customer receiving keys after auto repair service"
+						loading="lazy"
+					/>
+				</div>
+				<div class="value-grid">
+					{
+						valueCards.map((card) => (
+							<article class="value-card reveal">
+								<Icon name={card.icon} />
+								<h3>{card.title}</h3>
+								<p>{card.text}</p>
+							</article>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<section class="contact section-pad" id="contact">
+			<div class="contact-grid">
+				<div class="contact-copy reveal">
+					<p class="eyebrow">Contact</p>
+					<h2>Ready to schedule service?</h2>
+					<p>Call or request an appointment with a repair team focused on clear communication and reliable results.</p>
+					<div class="contact-actions">
+						<a class="btn btn-primary" href={phoneHref}>
+							<svg aria-hidden="true"><use href="#icon-phone" /></svg>
+							<span>Call Now</span>
+						</a>
+						<a class="btn btn-dark" href="mailto:appointments@margateautorepair.example">
+							<span>Schedule Appointment</span>
+							<svg aria-hidden="true"><use href="#icon-arrow" /></svg>
+						</a>
+					</div>
+				</div>
+
+				<div class="contact-card reveal">
+					<div>
+						<h3>Address</h3>
+						<p>2099 North State Rd. 7<br />Margate, FL 33063</p>
+					</div>
+					<div>
+						<h3>Business Hours</h3>
+						<p><strong>Monday-Friday</strong><br />7:00 AM - 6:00 PM</p>
+						<p><strong>Saturday</strong><br />8:00 AM - 5:00 PM</p>
+						<p><strong>Sunday</strong><br />9:00 AM - 4:00 PM</p>
+					</div>
+				</div>
+
+				<div class="map-placeholder reveal" aria-label="Google Maps placeholder for Margate Auto Repair">
+					<div>
+						<Icon name="pin" />
+						<strong>Google Maps Placeholder</strong>
+						<span>2099 North State Rd. 7, Margate, FL 33063</span>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer class="site-footer">
+		<strong>Margate Auto Repair</strong>
+		<span>Honest auto repair for the Margate community.</span>
+	</footer>
+
+	<svg class="icon-sprite" aria-hidden="true">
+		<symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></symbol>
+		<symbol id="icon-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z" /></symbol>
+		<symbol id="icon-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6" /></symbol>
+		<symbol id="icon-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6" /></symbol>
+	</svg>
 </Layout>
+
+<style>
+	:global(body) {
+		background: #f5f7fa;
+		color: #17202a;
+	}
+
+	.site-header {
+		align-items: center;
+		backdrop-filter: blur(18px);
+		background: rgba(255, 255, 255, 0.92);
+		border-bottom: 1px solid rgba(20, 31, 45, 0.08);
+		display: flex;
+		gap: 1rem;
+		justify-content: space-between;
+		left: 0;
+		min-height: 76px;
+		padding: 0.85rem clamp(1rem, 4vw, 3rem);
+		position: sticky;
+		right: 0;
+		top: 0;
+		transition: box-shadow 180ms ease, background 180ms ease;
+		z-index: 50;
+	}
+
+	.site-header.is-scrolled {
+		background: rgba(255, 255, 255, 0.98);
+		box-shadow: 0 18px 40px rgba(11, 30, 51, 0.11);
+	}
+
+	.brand {
+		align-items: center;
+		display: inline-flex;
+		gap: 0.7rem;
+		text-decoration: none;
+	}
+
+	.brand-mark {
+		align-items: center;
+		background: linear-gradient(135deg, #0b1f35, #145d9d);
+		border-radius: 8px;
+		color: #fff;
+		display: inline-flex;
+		font-weight: 900;
+		height: 42px;
+		justify-content: center;
+		width: 42px;
+	}
+
+	.brand strong,
+	.brand small {
+		display: block;
+		line-height: 1.1;
+	}
+
+	.brand strong {
+		color: #0b1f35;
+		font-size: 0.95rem;
+	}
+
+	.brand small {
+		color: #687381;
+		font-size: 0.72rem;
+		margin-top: 0.2rem;
+	}
+
+	.main-nav {
+		align-items: center;
+		display: flex;
+		gap: clamp(0.75rem, 2vw, 1.6rem);
+	}
+
+	.main-nav a {
+		color: #334152;
+		font-size: 0.9rem;
+		font-weight: 750;
+		position: relative;
+		text-decoration: none;
+		transition: color 180ms ease;
+	}
+
+	.main-nav a::after {
+		background: #1677c7;
+		border-radius: 999px;
+		bottom: -0.35rem;
+		content: "";
+		height: 2px;
+		left: 0;
+		position: absolute;
+		transform: scaleX(0);
+		transform-origin: left;
+		transition: transform 180ms ease;
+		width: 100%;
+	}
+
+	.main-nav a:hover {
+		color: #0b1f35;
+	}
+
+	.main-nav a:hover::after {
+		transform: scaleX(1);
+	}
+
+	.nav-call,
+	.btn {
+		align-items: center;
+		border-radius: 8px;
+		display: inline-flex;
+		font-weight: 850;
+		justify-content: center;
+		line-height: 1;
+		text-decoration: none;
+		transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease, color 180ms ease;
+		white-space: nowrap;
+	}
+
+	.nav-call {
+		background: #f5a524;
+		color: #111820;
+		min-height: 44px;
+		padding: 0 1rem;
+	}
+
+	.nav-call:hover,
+	.btn:hover {
+		transform: translateY(-2px);
+	}
+
+	.section-pad {
+		padding: clamp(4.5rem, 9vw, 7.5rem) clamp(1rem, 4vw, 3rem);
+	}
+
+	.hero {
+		align-items: center;
+		background: #0b1f35;
+		color: #fff;
+		display: grid;
+		min-height: calc(100vh - 76px);
+		overflow: hidden;
+		position: relative;
+	}
+
+	.hero-media {
+		background:
+			linear-gradient(90deg, rgba(11, 31, 53, 0.93) 0%, rgba(11, 31, 53, 0.76) 42%, rgba(11, 31, 53, 0.18) 100%),
+			url("https://images.unsplash.com/photo-1625047509252-ecdfb2ffab8f?auto=format&fit=crop&w=1900&q=84") center / cover;
+		inset: 0;
+		position: absolute;
+	}
+
+	.hero-shade {
+		background: linear-gradient(0deg, rgba(11, 31, 53, 0.72), transparent 34%);
+		inset: 0;
+		position: absolute;
+	}
+
+	.hero-inner {
+		display: grid;
+		gap: 2rem;
+		margin: 0 auto;
+		max-width: 1180px;
+		position: relative;
+		width: 100%;
+	}
+
+	.hero-copy {
+		max-width: 690px;
+		padding-top: 2rem;
+	}
+
+	.eyebrow {
+		color: #1677c7;
+		font-size: 0.78rem;
+		font-weight: 900;
+		letter-spacing: 0;
+		margin: 0 0 0.75rem;
+		text-transform: uppercase;
+	}
+
+	.hero .eyebrow {
+		color: #65b7ff;
+	}
+
+	h1,
+	h2,
+	h3,
+	p {
+		margin-top: 0;
+	}
+
+	h1 {
+		font-size: clamp(2.75rem, 7vw, 5.9rem);
+		line-height: 0.95;
+		margin-bottom: 1.35rem;
+		max-width: 780px;
+	}
+
+	h2 {
+		color: #0b1f35;
+		font-size: clamp(2rem, 4vw, 3.6rem);
+		line-height: 1.02;
+		margin-bottom: 1rem;
+	}
+
+	h3 {
+		color: #0f2338;
+		font-size: 1.05rem;
+		line-height: 1.2;
+		margin-bottom: 0.55rem;
+	}
+
+	p {
+		color: #5b6876;
+		line-height: 1.7;
+	}
+
+	.hero-text {
+		color: #d9e4ed;
+		font-size: clamp(1.04rem, 2vw, 1.3rem);
+		max-width: 650px;
+	}
+
+	.hero-actions,
+	.contact-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.85rem;
+		margin-top: 2rem;
+	}
+
+	.btn {
+		gap: 0.55rem;
+		min-height: 54px;
+		padding: 0 1.25rem;
+	}
+
+	.btn svg,
+	.nav-call svg,
+	.carousel-controls svg {
+		fill: none;
+		height: 19px;
+		stroke: currentColor;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		stroke-width: 2.3;
+		width: 19px;
+	}
+
+	.btn-primary {
+		background: #f5a524;
+		color: #101820;
+		box-shadow: 0 18px 42px rgba(245, 165, 36, 0.28);
+	}
+
+	.btn-secondary {
+		background: rgba(255, 255, 255, 0.12);
+		border: 1px solid rgba(255, 255, 255, 0.3);
+		color: #fff;
+	}
+
+	.btn-dark {
+		background: #0b1f35;
+		color: #fff;
+	}
+
+	.hero-panel {
+		align-items: flex-start;
+		background: rgba(255, 255, 255, 0.94);
+		border: 1px solid rgba(255, 255, 255, 0.35);
+		border-radius: 8px;
+		box-shadow: 0 24px 70px rgba(3, 12, 24, 0.25);
+		color: #0b1f35;
+		display: flex;
+		flex-direction: column;
+		gap: 0.35rem;
+		max-width: 360px;
+		padding: 1.2rem;
+	}
+
+	.hero-panel span {
+		color: #4f5e6c;
+		line-height: 1.5;
+	}
+
+	.section-heading {
+		margin: 0 auto 2rem;
+		max-width: 760px;
+	}
+
+	.section-heading.centered {
+		text-align: center;
+	}
+
+	.card-grid,
+	.service-grid,
+	.reason-grid,
+	.value-grid {
+		display: grid;
+		gap: 1rem;
+		margin: 0 auto;
+		max-width: 1180px;
+	}
+
+	.three {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	.feature-card,
+	.service-card,
+	.value-card,
+	.review-card,
+	.contact-card,
+	.process-step {
+		background: #fff;
+		border: 1px solid rgba(20, 31, 45, 0.09);
+		border-radius: 8px;
+		box-shadow: 0 18px 44px rgba(13, 32, 52, 0.08);
+		transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+	}
+
+	.feature-card:hover,
+	.service-card:hover,
+	.value-card:hover,
+	.review-card:hover,
+	.process-step:hover {
+		border-color: rgba(22, 119, 199, 0.26);
+		box-shadow: 0 24px 52px rgba(13, 32, 52, 0.12);
+		transform: translateY(-4px);
+	}
+
+	.feature-card {
+		padding: clamp(1.25rem, 3vw, 2rem);
+	}
+
+	.icon {
+		align-items: center;
+		background: #e9f4ff;
+		border: 1px solid rgba(22, 119, 199, 0.16);
+		border-radius: 8px;
+		color: #1677c7;
+		display: inline-flex;
+		height: 48px;
+		justify-content: center;
+		margin-bottom: 1.1rem;
+		width: 48px;
+	}
+
+	.icon svg {
+		fill: none;
+		height: 25px;
+		stroke: currentColor;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		stroke-width: 1.85;
+		width: 25px;
+	}
+
+	.services {
+		background: #ffffff;
+	}
+
+	.service-grid {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+
+	.service-card {
+		min-height: 250px;
+		padding: 1.15rem;
+	}
+
+	.service-card p {
+		font-size: 0.94rem;
+		margin-bottom: 1rem;
+	}
+
+	.service-card a {
+		color: #1677c7;
+		font-size: 0.9rem;
+		font-weight: 850;
+		text-decoration: none;
+	}
+
+	.split,
+	.about-grid,
+	.contact-grid,
+	.reviews-layout {
+		display: grid;
+		gap: clamp(1.5rem, 4vw, 3rem);
+		margin: 0 auto;
+		max-width: 1180px;
+	}
+
+	.split {
+		align-items: center;
+		grid-template-columns: 0.95fr 1.05fr;
+	}
+
+	.split-media,
+	.about-image {
+		border-radius: 8px;
+		overflow: hidden;
+	}
+
+	.split-media img,
+	.about-image img {
+		aspect-ratio: 5 / 4;
+		height: 100%;
+		object-fit: cover;
+		width: 100%;
+	}
+
+	.reason-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		margin-top: 1.8rem;
+	}
+
+	.reason-item {
+		align-items: center;
+		background: #fff;
+		border: 1px solid rgba(20, 31, 45, 0.08);
+		border-radius: 8px;
+		display: flex;
+		gap: 0.8rem;
+		min-height: 82px;
+		padding: 0.85rem;
+	}
+
+	.reason-item .icon {
+		flex: 0 0 auto;
+		height: 42px;
+		margin: 0;
+		width: 42px;
+	}
+
+	.reason-item span {
+		color: #0b1f35;
+		font-weight: 850;
+	}
+
+	.process {
+		background: #0b1f35;
+	}
+
+	.process .eyebrow,
+	.process h2 {
+		color: #fff;
+	}
+
+	.process .eyebrow {
+		color: #65b7ff;
+	}
+
+	.process-list {
+		display: grid;
+		gap: 1rem;
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+		list-style: none;
+		margin: 0 auto;
+		max-width: 1180px;
+		padding: 0;
+	}
+
+	.process-step {
+		min-height: 156px;
+		padding: 1.15rem;
+	}
+
+	.process-step span {
+		color: #1677c7;
+		display: block;
+		font-size: 0.78rem;
+		font-weight: 900;
+		margin-bottom: 1.1rem;
+		text-transform: uppercase;
+	}
+
+	.process-step strong {
+		color: #0b1f35;
+		display: block;
+		font-size: 1.15rem;
+		line-height: 1.25;
+	}
+
+	.reviews-layout {
+		align-items: center;
+		grid-template-columns: 0.85fr 1.15fr;
+	}
+
+	.carousel {
+		overflow: hidden;
+	}
+
+	.review-track {
+		display: flex;
+		transition: transform 320ms ease;
+	}
+
+	.review-card {
+		flex: 0 0 100%;
+		min-height: 300px;
+		padding: clamp(1.4rem, 4vw, 2.3rem);
+	}
+
+	.stars {
+		color: #f5a524;
+		font-size: 1.1rem;
+		margin-bottom: 1.2rem;
+	}
+
+	.review-card p {
+		color: #263545;
+		font-size: clamp(1.08rem, 2vw, 1.35rem);
+		line-height: 1.6;
+	}
+
+	.review-card strong {
+		color: #0b1f35;
+	}
+
+	.carousel-controls {
+		align-items: center;
+		display: flex;
+		gap: 0.8rem;
+		justify-content: flex-end;
+		margin-top: 1rem;
+	}
+
+	.carousel-controls button {
+		align-items: center;
+		background: #fff;
+		border: 1px solid rgba(20, 31, 45, 0.12);
+		border-radius: 8px;
+		color: #0b1f35;
+		cursor: pointer;
+		display: inline-flex;
+		height: 44px;
+		justify-content: center;
+		transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+		width: 44px;
+	}
+
+	.carousel-controls button:hover {
+		background: #1677c7;
+		color: #fff;
+		transform: translateY(-2px);
+	}
+
+	.dots {
+		display: flex;
+		gap: 0.45rem;
+	}
+
+	.dots button {
+		background: #c6d1dc;
+		border: 0;
+		border-radius: 999px;
+		height: 9px;
+		padding: 0;
+		width: 9px;
+	}
+
+	.dots button.is-active {
+		background: #1677c7;
+		width: 26px;
+	}
+
+	.about {
+		background: #fff;
+	}
+
+	.about-grid {
+		grid-template-columns: 1fr 0.9fr;
+	}
+
+	.about-copy p {
+		font-size: 1.06rem;
+	}
+
+	.value-grid {
+		grid-column: 1 / -1;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	.value-card {
+		padding: 1.25rem;
+	}
+
+	.contact {
+		background:
+			linear-gradient(180deg, rgba(245, 247, 250, 0.92), rgba(245, 247, 250, 0.92)),
+			url("https://images.unsplash.com/photo-1625047509248-ec889cbff17f?auto=format&fit=crop&w=1900&q=80") center / cover;
+	}
+
+	.contact-grid {
+		align-items: stretch;
+		grid-template-columns: 1fr 0.8fr;
+	}
+
+	.contact-copy,
+	.contact-card,
+	.map-placeholder {
+		background: rgba(255, 255, 255, 0.95);
+		border: 1px solid rgba(20, 31, 45, 0.08);
+		border-radius: 8px;
+		padding: clamp(1.25rem, 4vw, 2.25rem);
+	}
+
+	.contact-copy {
+		box-shadow: 0 22px 60px rgba(13, 32, 52, 0.1);
+	}
+
+	.contact-card h3 {
+		font-size: 0.9rem;
+		text-transform: uppercase;
+	}
+
+	.map-placeholder {
+		align-items: center;
+		background:
+			linear-gradient(135deg, rgba(11, 31, 53, 0.84), rgba(22, 119, 199, 0.76)),
+			repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.14) 0 1px, transparent 1px 18px);
+		color: #fff;
+		display: flex;
+		grid-column: 1 / -1;
+		justify-content: center;
+		min-height: 330px;
+		text-align: center;
+	}
+
+	.map-placeholder .icon {
+		background: rgba(255, 255, 255, 0.12);
+		border-color: rgba(255, 255, 255, 0.2);
+		color: #fff;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.map-placeholder strong,
+	.map-placeholder span {
+		display: block;
+	}
+
+	.map-placeholder span {
+		color: #dbe9f5;
+		margin-top: 0.45rem;
+	}
+
+	.site-footer {
+		align-items: center;
+		background: #071827;
+		color: #fff;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem 1.5rem;
+		justify-content: space-between;
+		padding: 1.4rem clamp(1rem, 4vw, 3rem);
+	}
+
+	.site-footer span {
+		color: #b8c7d5;
+	}
+
+	.icon-sprite {
+		display: none;
+	}
+
+	.reveal {
+		opacity: 0;
+		transform: translateY(24px);
+		transition: opacity 620ms ease, transform 620ms ease;
+	}
+
+	.reveal.is-visible {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	@media (max-width: 980px) {
+		.main-nav {
+			display: none;
+		}
+
+		.three,
+		.service-grid,
+		.reason-grid,
+		.process-list,
+		.value-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.split,
+		.reviews-layout,
+		.about-grid,
+		.contact-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.site-header {
+			min-height: 68px;
+			padding: 0.7rem 1rem;
+		}
+
+		.brand small {
+			display: none;
+		}
+
+		.brand strong {
+			font-size: 0.88rem;
+		}
+
+		.nav-call {
+			min-height: 40px;
+			padding: 0 0.75rem;
+		}
+
+		.hero {
+			min-height: calc(100vh - 68px);
+		}
+
+		.hero-media {
+			background:
+				linear-gradient(180deg, rgba(11, 31, 53, 0.94) 0%, rgba(11, 31, 53, 0.72) 56%, rgba(11, 31, 53, 0.62) 100%),
+				url("https://images.unsplash.com/photo-1625047509252-ecdfb2ffab8f?auto=format&fit=crop&w=1100&q=82") center / cover;
+		}
+
+		.hero-actions,
+		.contact-actions {
+			flex-direction: column;
+		}
+
+		.btn {
+			width: 100%;
+		}
+
+		.three,
+		.service-grid,
+		.reason-grid,
+		.process-list,
+		.value-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.service-card,
+		.process-step {
+			min-height: auto;
+		}
+
+		.carousel-controls {
+			justify-content: center;
+		}
+	}
+</style>
+
+<script>
+	const header = document.querySelector("[data-header]");
+	const revealItems = [...document.querySelectorAll(".reveal")];
+
+	const updateHeader = () => {
+		header?.classList.toggle("is-scrolled", window.scrollY > 12);
+	};
+
+	updateHeader();
+	window.addEventListener("scroll", updateHeader, { passive: true });
+
+	const observer = new IntersectionObserver(
+		(entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					entry.target.classList.add("is-visible");
+					observer.unobserve(entry.target);
+				}
+			});
+		},
+		{ threshold: 0.12 },
+	);
+
+	revealItems.forEach((item) => observer.observe(item));
+
+	const carousel = document.querySelector("[data-carousel]");
+	const track = carousel?.querySelector("[data-track]");
+	const prev = carousel?.querySelector("[data-prev]");
+	const next = carousel?.querySelector("[data-next]");
+	const dots = carousel?.querySelector("[data-dots]");
+	const slides = track ? [...track.children] : [];
+	let activeIndex = 0;
+
+	const renderDots = () => {
+		if (!dots) return;
+		dots.innerHTML = "";
+		slides.forEach((_, index) => {
+			const button = document.createElement("button");
+			button.type = "button";
+			button.setAttribute("aria-label", `Show review ${index + 1}`);
+			button.addEventListener("click", () => goToSlide(index));
+			dots.append(button);
+		});
+	};
+
+	const updateCarousel = () => {
+		if (!track || !dots) return;
+		track.style.transform = `translateX(-${activeIndex * 100}%)`;
+		[...dots.children].forEach((dot, index) => {
+			dot.classList.toggle("is-active", index === activeIndex);
+		});
+	};
+
+	const goToSlide = (index) => {
+		activeIndex = (index + slides.length) % slides.length;
+		updateCarousel();
+	};
+
+	renderDots();
+	updateCarousel();
+	prev?.addEventListener("click", () => goToSlide(activeIndex - 1));
+	next?.addEventListener("click", () => goToSlide(activeIndex + 1));
+</script>
