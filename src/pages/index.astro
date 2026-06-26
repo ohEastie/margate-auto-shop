@@ -13,45 +13,91 @@ const navItems = [
 	{ label: "Contact", href: "#contact" },
 ];
 
-const heroImage =
-	"https://images.unsplash.com/photo-1625047509168-a7026f36de04?auto=format&fit=crop&w=1800&q=84";
+const images = {
+	logo: "/images/logo.png",
+	hero: "/images/busy outside lot.png",
+	about: "/images/empty lot.png",
+	generalRepair: "/images/general repair.png",
+	tire: "/images/replacing a tire.png",
+	maintenance: "/images/maintenance.png",
+	brake: "/images/brake repair.png",
+	electrical: "/images/electrical.png",
+	engine: "/images/engine.png",
+	transmission: "/images/transmission.png",
+	ac: "/images/ac repair.png",
+	towing: "/images/towing.png",
+};
 
 const trustCards = [
 	{
 		title: "Honest Service",
 		text: "Clear communication and straightforward estimates before repair work begins.",
 		icon: "estimate",
+		image: images.hero,
 	},
 	{
 		title: "Experienced Technicians",
 		text: "Capable repair support for routine maintenance, diagnostics, and larger repairs.",
 		icon: "cert",
+		image: images.generalRepair,
 	},
 	{
 		title: "Convenient Location",
 		text: "Easy to find on North State Road 7 in the heart of Margate.",
 		icon: "pin",
+		image: images.about,
 	},
 	{
 		title: "Dependable Repairs",
 		text: "Service focused on getting everyday drivers safely back on the road.",
 		icon: "shield",
+		image: images.tire,
 	},
 ];
 
 const services = [
-	["Engine Repair", "Diagnostics and repair for performance, leaks, noises, and warning signs.", "engine"],
-	["Transmission Repair", "Careful inspection and service for shifting and drivability issues.", "gear"],
-	["Brake Repair", "Brake pads, rotors, hydraulics, and safety inspections.", "brake"],
-	["Auto A/C Repair", "Testing and repair to keep your vehicle comfortable in Florida heat.", "snow"],
-	["Electrical Diagnostics", "Troubleshooting for batteries, starters, alternators, and wiring.", "bolt"],
-	["Computer Diagnostics", "Scan-tool support for warning lights and modern vehicle systems.", "scan"],
-	["Suspension & Steering", "Repairs for ride quality, handling, alignment symptoms, and steering feel.", "suspension"],
-	["Cooling System Repair", "Radiators, hoses, thermostats, water pumps, and overheating concerns.", "drop"],
-	["Oil Changes", "Quick oil and filter service using products matched to your vehicle.", "oil"],
-	["General Maintenance", "Preventive service to help reduce breakdowns and surprise repairs.", "wrench"],
-	["Exhaust & Muffler Repair", "Support for exhaust leaks, rattles, noise, and muffler concerns.", "exhaust"],
-	["Pre-Purchase Inspections", "A practical inspection before buying a used vehicle.", "clipboard"],
+	{
+		title: "Oil Changes",
+		text: "Routine oil and filter service to help keep your vehicle running smoothly.",
+		icon: "oil",
+		image: images.maintenance,
+	},
+	{
+		title: "Brake Service",
+		text: "Brake pads, rotors, inspections, and repairs focused on everyday safety.",
+		icon: "brake",
+		image: images.brake,
+	},
+	{
+		title: "Electrical Diagnostics",
+		text: "Troubleshooting for batteries, starters, alternators, wiring, and warning lights.",
+		icon: "bolt",
+		image: images.electrical,
+	},
+	{
+		title: "Engine Repair",
+		text: "Diagnostics and repair for noises, leaks, performance issues, and warning signs.",
+		icon: "engine",
+		image: images.engine,
+	},
+	{
+		title: "Transmission Service",
+		text: "Careful inspection and service for shifting concerns and drivability issues.",
+		icon: "gear",
+		image: images.transmission,
+	},
+	{
+		title: "A/C Repair",
+		text: "Testing and repair to keep your vehicle comfortable in South Florida heat.",
+		icon: "snow",
+		image: images.ac,
+	},
+	{
+		title: "Towing & Roadside Assistance",
+		text: "Helpful support when your vehicle cannot make it to the shop on its own.",
+		icon: "towing",
+		image: images.towing,
+	},
 ];
 
 const process = [
@@ -98,7 +144,7 @@ const values = [
 <Layout>
 	<header class="site-header" data-header>
 		<a class="brand" href="#home" aria-label="Margate Auto Repair home">
-			<span class="brand-mark">M</span>
+			<img class="brand-logo" src={images.logo} alt="Margate Auto Repair logo" />
 			<span>
 				<strong>Margate Auto Repair</strong>
 				<small>Neighborhood Auto Care</small>
@@ -117,7 +163,7 @@ const values = [
 
 	<main id="home">
 		<section class="hero">
-			<div class="hero-bg" style={`background-image: url("${heroImage}")`} aria-hidden="true"></div>
+			<div class="hero-bg" style={`background-image: url("${images.hero}")`} aria-hidden="true"></div>
 			<div class="hero-overlay" aria-hidden="true"></div>
 			<div class="hero-inner">
 				<div class="hero-copy reveal">
@@ -158,9 +204,12 @@ const values = [
 				{
 					trustCards.map((card) => (
 						<article class="trust-card reveal">
-							<Icon name={card.icon} />
-							<h3>{card.title}</h3>
-							<p>{card.text}</p>
+							<img src={card.image} alt="" loading="lazy" />
+							<div class="trust-card-body">
+								<Icon name={card.icon} />
+								<h3>{card.title}</h3>
+								<p>{card.text}</p>
+							</div>
 						</article>
 					))
 				}
@@ -178,12 +227,15 @@ const values = [
 			</div>
 			<div class="service-grid">
 				{
-					services.map(([title, text, icon]) => (
+					services.map((service) => (
 						<article class="service-card reveal">
-							<Icon name={icon} />
-							<h3>{title}</h3>
-							<p>{text}</p>
-							<a href="#contact">Request service</a>
+							<img src={service.image} alt={`${service.title} at Margate Auto Repair`} loading="lazy" />
+							<div class="service-card-body">
+								<Icon name={service.icon} />
+								<h3>{service.title}</h3>
+								<p>{service.text}</p>
+								<a href="#contact">Request service</a>
+							</div>
 						</article>
 					))
 				}
@@ -194,8 +246,8 @@ const values = [
 			<div class="story-grid">
 				<div class="story-image reveal">
 					<img
-						src="https://images.unsplash.com/photo-1632823471565-1ecdf5c30f17?auto=format&fit=crop&w=1200&q=82"
-						alt="Mechanic inspecting a vehicle in a clean neighborhood repair bay"
+						src={images.about}
+						alt="Exterior lot at Margate Auto Repair"
 						loading="lazy"
 					/>
 				</div>
@@ -224,6 +276,41 @@ const values = [
 			</div>
 		</section>
 
+		<section class="why section-pad">
+			<div class="why-grid">
+				<div class="why-copy reveal">
+					<p class="eyebrow">Why choose us</p>
+					<h2>Real technicians, real repairs, and a shop you can recognize when you arrive.</h2>
+					<p>
+						The site now puts the actual business environment front and center, so visitors
+						can see the kind of local repair garage they are calling before they schedule.
+					</p>
+					<div class="why-points">
+						<div>
+							<Icon name="wrench" />
+							<span>General repair and diagnostics</span>
+						</div>
+						<div>
+							<Icon name="check" />
+							<span>Tire and maintenance support</span>
+						</div>
+					</div>
+				</div>
+				<div class="why-photos reveal">
+					<img
+						src={images.generalRepair}
+						alt="General repair work at Margate Auto Repair"
+						loading="lazy"
+					/>
+					<img
+						src={images.tire}
+						alt="Technician replacing a tire at Margate Auto Repair"
+						loading="lazy"
+					/>
+				</div>
+			</div>
+		</section>
+
 		<section class="process section-pad">
 			<div class="section-heading centered reveal">
 				<p class="eyebrow">What to expect</p>
@@ -240,6 +327,9 @@ const values = [
 					))
 				}
 			</ol>
+			<div class="process-photo reveal">
+				<img src={images.maintenance} alt="Maintenance service at Margate Auto Repair" loading="lazy" />
+			</div>
 		</section>
 
 		<section class="reviews section-pad" id="reviews">
@@ -262,6 +352,9 @@ const values = [
 							</article>
 						))
 					}
+				</div>
+				<div class="reviews-photo reveal">
+					<img src={images.hero} alt="Busy outside lot at Margate Auto Repair" loading="lazy" />
 				</div>
 			</div>
 		</section>
@@ -307,12 +400,15 @@ const values = [
 						loading="lazy"
 						referrerpolicy="no-referrer-when-downgrade"></iframe>
 				</div>
+				<div class="contact-photo reveal">
+					<img src={images.about} alt="Margate Auto Repair storefront lot" loading="lazy" />
+				</div>
 			</div>
 		</section>
 	</main>
 
 	<footer class="site-footer">
-		<strong>Margate Auto Repair</strong>
+		<img src={images.logo} alt="Margate Auto Repair logo" />
 		<span>Neighborhood auto repair in Margate, FL.</span>
 	</footer>
 
@@ -365,16 +461,14 @@ const values = [
 		gap: 0.7rem;
 	}
 
-	.brand-mark {
-		align-items: center;
-		background: #0b1f35;
+	.brand-logo {
+		background: #fff;
 		border-radius: 8px;
-		color: #fff;
-		display: inline-flex;
-		font-weight: 900;
-		height: 42px;
-		justify-content: center;
-		width: 42px;
+		box-shadow: 0 8px 20px rgba(13, 32, 52, 0.08);
+		height: 46px;
+		object-fit: contain;
+		padding: 0.3rem;
+		width: 58px;
 	}
 
 	.brand strong,
@@ -509,15 +603,15 @@ const values = [
 	}
 
 	.hero-bg {
-		background-position: center;
+		background-position: center 48%;
 		background-size: cover;
 		transform: scale(1.02);
 	}
 
 	.hero-overlay {
 		background:
-			linear-gradient(90deg, rgba(7, 24, 39, 0.93) 0%, rgba(7, 24, 39, 0.78) 42%, rgba(7, 24, 39, 0.36) 100%),
-			linear-gradient(0deg, rgba(7, 24, 39, 0.66), transparent 42%);
+			linear-gradient(90deg, rgba(7, 24, 39, 0.9) 0%, rgba(7, 24, 39, 0.72) 44%, rgba(7, 24, 39, 0.32) 100%),
+			linear-gradient(0deg, rgba(7, 24, 39, 0.68), transparent 46%);
 	}
 
 	.hero-inner,
@@ -618,6 +712,16 @@ const values = [
 		padding: 1.1rem;
 	}
 
+	.hero::after {
+		background: #ef9d1f;
+		bottom: 0;
+		content: "";
+		height: 5px;
+		left: 0;
+		position: absolute;
+		right: 0;
+	}
+
 	.hero-card p {
 		margin: 0.2rem 0 0;
 	}
@@ -688,7 +792,21 @@ const values = [
 	}
 
 	.trust-card {
-		padding: 1.35rem;
+		overflow: hidden;
+	}
+
+	.trust-card img,
+	.service-card img,
+	.reviews-photo img,
+	.contact-photo img {
+		display: block;
+		height: 170px;
+		object-fit: cover;
+		width: 100%;
+	}
+
+	.trust-card-body {
+		padding: 1.2rem;
 	}
 
 	.icon {
@@ -721,13 +839,30 @@ const values = [
 	.service-grid {
 		display: grid;
 		gap: 1rem;
-		grid-template-columns: repeat(4, minmax(0, 1fr));
+		grid-template-columns: repeat(3, minmax(0, 1fr));
 	}
 
 	.service-card {
 		display: flex;
 		flex-direction: column;
-		min-height: 260px;
+		min-height: 100%;
+		overflow: hidden;
+		padding: 0;
+	}
+
+	.service-card img {
+		height: 210px;
+		transition: transform 260ms ease;
+	}
+
+	.service-card:hover img {
+		transform: scale(1.04);
+	}
+
+	.service-card-body {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
 		padding: 1.2rem;
 	}
 
@@ -765,6 +900,71 @@ const values = [
 		height: 100%;
 		object-fit: cover;
 		width: 100%;
+	}
+
+	.why {
+		background: #f6f8fb;
+	}
+
+	.why-grid {
+		align-items: center;
+		display: grid;
+		gap: clamp(1.6rem, 5vw, 4rem);
+		margin: 0 auto;
+		max-width: 1180px;
+		grid-template-columns: 0.85fr 1.15fr;
+	}
+
+	.why-copy {
+		max-width: 560px;
+	}
+
+	.why-points {
+		display: grid;
+		gap: 0.8rem;
+		margin-top: 1.6rem;
+	}
+
+	.why-points div {
+		align-items: center;
+		background: #fff;
+		border: 1px solid rgba(20, 31, 45, 0.09);
+		border-radius: 8px;
+		box-shadow: 0 14px 32px rgba(13, 32, 52, 0.07);
+		display: flex;
+		gap: 0.85rem;
+		padding: 0.85rem;
+	}
+
+	.why-points .icon {
+		flex: 0 0 auto;
+		height: 42px;
+		margin: 0;
+		width: 42px;
+	}
+
+	.why-points span {
+		color: #0b1f35;
+		font-weight: 900;
+	}
+
+	.why-photos {
+		display: grid;
+		gap: 1rem;
+		grid-template-columns: 1fr 0.86fr;
+	}
+
+	.why-photos img {
+		border-radius: 8px;
+		box-shadow: 0 24px 58px rgba(13, 32, 52, 0.13);
+		height: 460px;
+		object-fit: cover;
+		width: 100%;
+	}
+
+	.why-photos img:nth-child(2) {
+		height: 360px;
+		margin-top: 3.2rem;
 	}
 
 	.value-grid {
@@ -809,6 +1009,7 @@ const values = [
 		gap: 1rem;
 		grid-template-columns: repeat(4, minmax(0, 1fr));
 		list-style: none;
+		margin: 0 auto;
 		padding: 0;
 	}
 
@@ -828,6 +1029,22 @@ const values = [
 		justify-content: center;
 		margin-bottom: 1rem;
 		width: 42px;
+	}
+
+	.process-photo {
+		border-radius: 8px;
+		box-shadow: 0 24px 58px rgba(3, 12, 24, 0.22);
+		margin: 1rem auto 0;
+		max-width: 1180px;
+		overflow: hidden;
+		position: relative;
+	}
+
+	.process-photo img {
+		display: block;
+		height: 320px;
+		object-fit: cover;
+		width: 100%;
 	}
 
 	.reviews {
@@ -874,9 +1091,7 @@ const values = [
 	}
 
 	.contact {
-		background:
-			linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(246, 248, 251, 0.94)),
-			url("https://images.unsplash.com/photo-1625047509248-ec889cbff17f?auto=format&fit=crop&w=1800&q=80") center / cover;
+		background: #fff;
 	}
 
 	.contact-grid {
@@ -896,7 +1111,6 @@ const values = [
 	}
 
 	.map-card {
-		grid-column: 1 / -1;
 		overflow: hidden;
 	}
 
@@ -905,6 +1119,29 @@ const values = [
 		display: block;
 		height: 360px;
 		width: 100%;
+	}
+
+	.reviews-photo,
+	.contact-photo {
+		border-radius: 8px;
+		box-shadow: 0 24px 58px rgba(13, 32, 52, 0.13);
+		overflow: hidden;
+	}
+
+	.reviews-photo {
+		grid-column: 1 / -1;
+	}
+
+	.reviews-photo img {
+		height: 340px;
+	}
+
+	.contact-photo {
+		grid-column: 1 / -1;
+	}
+
+	.contact-photo img {
+		height: 360px;
 	}
 
 	.site-footer {
@@ -920,6 +1157,15 @@ const values = [
 
 	.site-footer span {
 		color: #b8c7d5;
+	}
+
+	.site-footer img {
+		background: #fff;
+		border-radius: 8px;
+		height: 50px;
+		object-fit: contain;
+		padding: 0.35rem;
+		width: 72px;
 	}
 
 	.icon-sprite {
@@ -944,6 +1190,7 @@ const values = [
 
 		.hero-inner,
 		.story-grid,
+		.why-grid,
 		.reviews-grid,
 		.contact-grid {
 			grid-template-columns: 1fr;
@@ -953,6 +1200,12 @@ const values = [
 		.service-grid,
 		.process-list {
 			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.why-photos img,
+		.why-photos img:nth-child(2) {
+			height: 340px;
+			margin-top: 0;
 		}
 
 		.hero {
@@ -1009,6 +1262,17 @@ const values = [
 		.service-grid,
 		.process-list {
 			grid-template-columns: 1fr;
+		}
+
+		.why-photos {
+			grid-template-columns: 1fr;
+		}
+
+		.why-photos img,
+		.why-photos img:nth-child(2),
+		.reviews-photo img,
+		.contact-photo img {
+			height: 260px;
 		}
 
 		.service-card,
